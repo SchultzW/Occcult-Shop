@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Browse";
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+
+<div class="searchBar">
+    <form class="searchBar" method="post">
+        <label for="search"> </label>
+        <input for="search" title="search" placeholder="Search"/>
+        <button>Go</button>
+    </form>
+</div>
+
+<div class="grid">
+    <article class="card product-item">
+        <a asp-action="">
+            <header class="card__header">
+                <h1 class="product__title center">
+                    Home
+                </h1>
+            </header>
+            <div class="card__image center">
+                <img src="http://placekitten.com/200/300" class="" />
+            </div>
+        </a>
+    </article>
+
+    <article class="card product-item">
+        <a asp-action="">
+            <header class="card__header">
+                <h1 class="product__title center">
+                    Books
+                </h1>
+            </header>
+            <div class="card__image center">
+                <img src="http://placekitten.com/200/300" class="" />
+            </div>
+
+        </a>
+    </article>
+
+    <article class="card product-item">
+        <a asp-action="">
+            <header class="card__header">
+                <h1 class="product__title center">
+                    Decor
+                </h1>
+            </header>
+            <div class="card__image center">
+                <img src="http://placekitten.com/200/300" class="" />
+            </div>
+
+        </a>
+    </article>
+
+</div>
+
+<div class="grid">
+<article class="card product-item">
+    <a asp-action="">
+        <header class="card__header">
+            <h1 class="product__title center">
+                Trinkets
+            </h1>
+        </header>
+        <div class="card__image center">
+            <img src="http://placekitten.com/200/300" class="" />
+        </div>
+    </a>
+</article>
+
+<article class="card product-item">
+    <a asp-action="">
+        <header class="card__header">
+            <h1 class="product__title center">
+                Clothing
+            </h1>
+        </header>
+        <div class="card__image center">
+            <img src="http://placekitten.com/200/300" class="" />
+        </div>
+
+    </a>
+</article>
+
+<article class="card product-item">
+    <a asp-action="">
+        <header class="card__header">
+            <h1 class="product__title center">
+                
+            </h1>
+        </header>
+        <div class="card__image center">
+            <img src="http://placekitten.com/200/300" class="" />
+        </div>
+
+    </a>
+</article>
+
+</div>
+

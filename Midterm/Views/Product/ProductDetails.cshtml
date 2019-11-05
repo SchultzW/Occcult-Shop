@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+
+<h1>ProductDetailsView</h1>
+
+<div class="prod-layout">
+    <img src="http://placekitten.com/200/300" class="" />
+</div>
+<div class="prod-layout">
+    <p>Title</p>
+    <p>Price</p>
+</div>
+<form method="post">
+    Quantity:<select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+    <button class="btn" type="submit">Add to Cart</button>
+</form>
+<div>
+   <p>Desc</p> 
+</div>
+
+<div>
+    <h4>Reviews</h4>
+    <p>Review by:</p>
+    Review Text
+</div>

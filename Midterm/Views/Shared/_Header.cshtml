@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+
+</head>
+<body>
+    <div class="navbar">
+        <a asp-controller="Home" asp-action="index">Home</a>
+
+        <a asp-controller="Product" asp-action="Browse">Browse</a>
+
+        <a asp-controller="User" asp-action="Cart">Your Cart</a>
+
+        <a asp-controller="User" asp-action="Profile">Profile</a>
+        
+        <a asp-controller="User" asp-action="Checkout">Checkout</a>
+
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
