@@ -1,30 +1,56 @@
-﻿
+﻿@model List<Product>
 @{
-    ViewData["Title"] = "Product";
-    Layout = "~/Views/Shared/_Header.cshtml";
+	ViewData["Title"] = "Product";
+	Layout = "~/Views/Shared/_Header.cshtml";
 }
 
 <h1>ProductView</h1>
 
-<div class="grid">
-    <article class="card product-item">
-        <a asp-action="ProductDetails">
-            <div class="card__image center">
-                <img src="http://placekitten.com/200/300" class="" />
-            </div>
-            <div class="card__content">
-                <p class="product__description">
-                    Title:
-                </p>
-                <p class="product__description">
-                    Price:
-                </p>
+@foreach (Product p in products)
+{
+	<div class="grid">
+		<article class="card product-item">
+			<a asp-action="ProductDetails">
+				<div class="card__image center">
+					<img src="@p.imgPath" class="" />
+				</div>
+				<div class="card__content">
+					<p class="product__description">
+						Title:@p.Title
+					</p>
+					<p class="product__description">
+						Price:@p.Price
+					</p>
 
 
-            </div>
-        </a>
-    </article>
+				</div>
+			</a>
+		</article>
+	</div>
 
 
 
-</div>
+
+
+}
+
+
+@*<div class="grid">
+		<article class="card product-item">
+			<a asp-action="ProductDetails">
+				<div class="card__image center">
+					<img src="http://placekitten.com/200/300" class="" />
+				</div>
+				<div class="card__content">
+					<p class="product__description">
+						Title:
+					</p>
+					<p class="product__description">
+						Price:
+					</p>
+
+
+				</div>
+			</a>
+		</article>
+	</div>*@

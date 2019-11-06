@@ -12,6 +12,7 @@ namespace Midterm.Models
         public string Description { get; set; }
         public string Price{ get; set; }
         public string Tag { get; set; }
+        public string imgPath { get; set; }
 
 
 
