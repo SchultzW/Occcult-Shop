@@ -26,6 +26,13 @@ namespace Midterm.Models
             Product prod = prods.Find(p => p.Tag == tag);
             return prod;
         }
-
+        public static int Count()
+        {
+            return prods.Count();
+        }
+        public void Clear()
+        {
+            prods.Clear();
+        }
     }
 }

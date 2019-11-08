@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Header.cshtml";
 }
-
+@model List<Product>
 
 <div class="container">
     <div class="jumbotron titlebox">
@@ -22,7 +22,36 @@
     </div>
 
     <div class="grid">
-        <article class="card product-item">
+
+
+        @foreach (Product p in Model)
+        {
+
+            <article class="card product-item">
+                <a asp-controller="Product" asp-action="ProductDetails"asp-route-id="@p.ID">
+                    <header class="card__header">
+                        <h1 class="product__title center">
+                            @p.Title
+                        </h1>
+                    </header>
+                    <div class="card__image center">
+                        <img src="@p.imgPath" class="" />
+                    </div>
+                    <div class="card__content">
+                        <p class="product__description">
+                            @p.Price
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+        }
+
+
+
+
+
+        @*<article class="card product-item">
             <a asp-action="">
                 <header class="card__header">
                     <h1 class="product__title center">
@@ -74,6 +103,6 @@
                     </p>
                 </div>
             </a>
-        </article>
+        </article>*@
 
     </div>

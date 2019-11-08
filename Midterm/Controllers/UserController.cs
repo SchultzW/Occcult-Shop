@@ -10,6 +10,8 @@ namespace Midterm.Controllers
 {
     public class UserController : Controller
     {
+        List<CartItem> cart = new List<CartItem>();
+
         public ViewResult Profile()
         {
             return View();
@@ -21,20 +23,22 @@ namespace Midterm.Controllers
         [HttpGet]
         public ViewResult Cart()
         {
-            return View();
+            List<CartItem> cart = GetCart();
+
+            return View(cart);
         }
         [HttpPost]
         public IActionResult Cart(string s)
         {
             return View("checkout");
         }
-        private CartRepo GetCart()
+        private List<CartItem> GetCart()
         {
-            CartRepo cart = HttpContext.Session.GetJson<CartRepo>("Cart") ?? new CartRepo();
+            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
             return cart;
         }
 
-        private void SaveCart(CartRepo cart)
+        private void SaveCart(List<CartItem> cart)
         {
             HttpContext.Session.SetJson("Cart", cart);
         }

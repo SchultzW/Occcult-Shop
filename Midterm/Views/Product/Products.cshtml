@@ -1,51 +1,61 @@
 ﻿@model List<Product>
 @{
-	ViewData["Title"] = "Product";
-	Layout = "~/Views/Shared/_Header.cshtml";
+    ViewData["Title"] = "Product";
+    Layout = "~/Views/Shared/_Header.cshtml";
 }
 
 <h1>ProductView</h1>
-<div class="grid">
-    @foreach (Midterm.Models.Product p in Model)
-    {
 
+@if (Model != null)
+{
+    <div class="grid">
+        @foreach (Midterm.Models.Product p in Model)
+        {
+
+            <article class="card product-item">
+                <a asp-action="ProductDetails" asp-route-id="@p.ID">
+                    <div class="card__image center">
+                        <img src="@p.imgPath" class="" />
+                    </div>
+                    <div class="card__content">
+                        <p class="product__description">
+                            Title:@p.Title
+                        </p>
+                        <p class="product__description">
+                            Price:@p.Price
+                        </p>
+
+
+                    </div>
+                </a>
+            </article>
+
+        }
+    </div>
+}
+else
+{
+    <h1>There are no Products</h1>
+}
+
+
+
+@*<div class="grid">
         <article class="card product-item">
-            <a asp-action="ProductDetails" asp-route-id="@p.ID">
+            <a asp-action="ProductDetails">
                 <div class="card__image center">
-                    <img src="@p.imgPath" class="" />
+                    <img src="http://placekitten.com/200/300" class="" />
                 </div>
                 <div class="card__content">
                     <p class="product__description">
-                        Title:@p.Title
+                        Title:
                     </p>
                     <p class="product__description">
-                        Price:@p.Price
+                        Price:
                     </p>
 
 
                 </div>
             </a>
         </article>
-
-    }
-</div>
-
-@*<div class="grid">
-		<article class="card product-item">
-			<a asp-action="ProductDetails">
-				<div class="card__image center">
-					<img src="http://placekitten.com/200/300" class="" />
-				</div>
-				<div class="card__content">
-					<p class="product__description">
-						Title:
-					</p>
-					<p class="product__description">
-						Price:
-					</p>
-
-
-				</div>
-			</a>
-		</article>
-	</div>*@
+    </div>*@

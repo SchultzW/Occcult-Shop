@@ -15,6 +15,7 @@ namespace Midterm.Models
         public string Tag { get; set; }
         public string imgPath { get; set; }
         public List<Review> Reviews = new List<Review>();
+        
 
 
 

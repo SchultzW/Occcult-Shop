@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Midterm.Models;
 using Midterm.Infrastructure;
+using static Midterm.Models.CartRepo;
 
 namespace Midterm.Controllers
 {
@@ -30,7 +31,8 @@ namespace Midterm.Controllers
         [HttpGet]
         public ViewResult Products(string tag)
         {
-            if(ProdRepo.Prods.Count==0)
+            ProdRepo.Prods.Clear();
+            if (ProdRepo.Prods.Count==0)
             {
                 switch (tag)
                 {
@@ -60,24 +62,29 @@ namespace Midterm.Controllers
             p = ProdRepo.GetProdByID(id);
             item.CartProd = p;
             item.Quantity = quantity;
+
             
+            //List<CartRepo> cart = CartRepo.Carts;
             List<CartItem> cart = CartRepo.Carts;
+            
+            
             cart.Add(item);
+            SaveCart(cart);
             return View(p);
 
             
         }
-        private CartRepo GetCart()
+        private List<CartItem> GetCart()
         {
-            CartRepo cart = HttpContext.Session.GetJson<CartRepo>("Cart") ?? new CartRepo();
+            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
             return cart;
         }
 
-        private void SaveCart(CartRepo cart)
+        private void SaveCart(List<CartItem> cart)
         {
             HttpContext.Session.SetJson("Cart", cart);
         }
-        
+
 
 
 

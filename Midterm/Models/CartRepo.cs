@@ -14,5 +14,11 @@ namespace Midterm.Models
         {
             carts.Add(cartItem);
         }
+        
+    }
+    public class CartItem
+    {
+        public Product CartProd { get; set; }
+        public int Quantity { get; set; }
     }
 }
