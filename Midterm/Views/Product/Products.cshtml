@@ -5,35 +5,30 @@
 }
 
 <h1>ProductView</h1>
+<div class="grid">
+    @foreach (Midterm.Models.Product p in Model)
+    {
 
-@foreach (Product p in products)
-{
-	<div class="grid">
-		<article class="card product-item">
-			<a asp-action="ProductDetails">
-				<div class="card__image center">
-					<img src="@p.imgPath" class="" />
-				</div>
-				<div class="card__content">
-					<p class="product__description">
-						Title:@p.Title
-					</p>
-					<p class="product__description">
-						Price:@p.Price
-					</p>
-
-
-				</div>
-			</a>
-		</article>
-	</div>
+        <article class="card product-item">
+            <a asp-action="ProductDetails" asp-route-id="@p.ID">
+                <div class="card__image center">
+                    <img src="@p.imgPath" class="" />
+                </div>
+                <div class="card__content">
+                    <p class="product__description">
+                        Title:@p.Title
+                    </p>
+                    <p class="product__description">
+                        Price:@p.Price
+                    </p>
 
 
+                </div>
+            </a>
+        </article>
 
-
-
-}
-
+    }
+</div>
 
 @*<div class="grid">
 		<article class="card product-item">

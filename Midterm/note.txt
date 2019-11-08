@@ -1,0 +1,2 @@
+currently working on cart page. I think i need to add the session info to save the cart
+on the prod page and then load it on the cart page or else page is blank

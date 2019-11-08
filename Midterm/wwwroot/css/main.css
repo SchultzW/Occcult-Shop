@@ -360,6 +360,12 @@ btn:active {
     text-align:center;
     color:black;
 }
+.bigHeader {
+    font-size: 40px;
+    text-align: center;
+    color: black;
+    display:inline;
+}
 .box {
     margin-bottom: 20px;
     height: 100px;
@@ -379,6 +385,12 @@ btn:active {
 .boxtext {
     text-align: center;
     color: black;
+}
+.eye{
+    width:auto;
+    height:auto;
+    text-align:center;
+    margin:10px;
 }
 
 /*Search Bar*/

@@ -7,8 +7,8 @@ namespace Midterm.Models
 {
     public class User
     {
-        private static List<Product> products = new List<Product>();
-        public static List<Product> Products { get { return products; } }
+        private static List<CartRepo> cart = new List<CartRepo>();
+        public static List<CartRepo> Cart { get { return cart; } }
 
         public string Name { get; set; }
         public string Password { get; set; }

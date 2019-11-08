@@ -14,7 +14,7 @@
 
 <div class="grid">
     <article class="card product-item">
-        <a asp-action="" value="Home">
+        <a asp-action="Products" id="Home">
             <header class="card__header">
                 <h1 class="product__title center">
                     Home
@@ -27,7 +27,8 @@
     </article>
 
     <article class="card product-item">
-        <a asp-action="" value="book">
+        <a asp-controller="Product" asp-action="Products" asp-route-tag="Book">
+            
             <header class="card__header">
                 <h1 class="product__title center">
                     Books
@@ -41,7 +42,7 @@
     </article>
 
     <article class="card product-item">
-        <a asp-action="">
+        <a asp-action="Products">
             <header class="card__header">
                 <h1 class="product__title center">
                     Decor
@@ -58,7 +59,7 @@
 
 <div class="grid">
 <article class="card product-item">
-    <a asp-action="">
+    <a asp-action="Products">
         <header class="card__header">
             <h1 class="product__title center">
                 Trinkets
@@ -71,7 +72,7 @@
 </article>
 
 <article class="card product-item">
-    <a asp-action="">
+    <a asp-action="Products">
         <header class="card__header">
             <h1 class="product__title center">
                 Clothing
@@ -85,7 +86,7 @@
 </article>
 
 <article class="card product-item">
-    <a asp-action="">
+    <a asp-action="Products">
         <header class="card__header">
             <h1 class="product__title center">
                 

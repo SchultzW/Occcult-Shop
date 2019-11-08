@@ -1,4 +1,4 @@
-﻿
+﻿@model List<CartItem>
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Header.cshtml";
@@ -10,24 +10,34 @@
 
 
 <div class="">
-    <div class="">
-        <div class="prod-layout">
-            <img src="http://placekitten.com/100/200" class="" />
+    @foreach (Midterm.Models.CartItem i in Model)
+    {
+        <div class="">
+            <div class="prod-layout">
+                <img src="@i.CartProd.imgPath" class="" />
+            </div>
+            <div class="prod-layout">
+                <p>@i.CartProd.Title</p>
+                <p>@i.CartProd.Price</p>
+                <p>Quantity: @i.Quantity</p>
+            </div>
         </div>
-        <div class="prod-layout">
-            <p>Title</p>
-            <p>Price</p>
-        </div>
-    </div>
 
-    <div class="">
-        <div class="prod-layout">
-            <img src="http://placekitten.com/100/200" class="" />
-        </div>
-        <div class="prod-layout">
-            <p>Title</p>
-            <p>Price</p>
-        </div>
-    </div>
-
+    }
 </div>
+
+
+
+@*<@*div class="">
+    <div class="">
+        <div class="prod-layout">
+            <img src="http://placekitten.com/100/200" class="" />
+        </div>
+        <div class="prod-layout">
+            <p>Title</p>
+            <p>Price</p>
+        </div>
+    </div>*@
+
+
+
