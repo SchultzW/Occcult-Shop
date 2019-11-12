@@ -43,7 +43,9 @@ namespace Midterm.Controllers
             
             if(ProdRepo.Count()==0)
             {
+                
                 FillRepo();
+                
             }
             int num = ProdRepo.Count();
             Random random = new Random();
@@ -68,6 +70,7 @@ namespace Midterm.Controllers
             
            
         }
+
         public void FillRepo()
         {
             Product p = new Product();
