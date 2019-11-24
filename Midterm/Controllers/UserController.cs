@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Midterm.Infrastructure;
 using Midterm.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -50,15 +51,20 @@ namespace Midterm.Controllers
             return View();
         }
         [HttpPost]
-        public RedirectResult Horoscope(string sign)
+        public ActionResult Horoscope(string sign,string time)
         {
+   
+           MyHoroscope horoscope = new MyHoroscope();
             var client = new RestClient();
 
-            IRestResponse response = client.Execute(new RestRequest("http://horoscope-api.herokuapp.com/horoscope/today/" + sign));
+            IRestResponse response = client.Execute(new RestRequest("http://horoscope-api.herokuapp.com/horoscope/"+time+"/" + sign));
 
-            var objects = JObject.Parse(response.Content);
+            string objects = JObject.Parse(response.Content).ToString();
+
+            horoscope = JsonConvert.DeserializeObject<MyHoroscope>(objects);
 
             /*
+             * Account account = JsonConvert.DeserializeObject<Account>(json);
              * need to create a model for response from API so i can pass it 
              * into view
              * 
@@ -74,7 +80,7 @@ namespace Midterm.Controllers
              * 
              */
 
-            return null;
+            return View("HoroscopeResult",horoscope);
         }
 
     }

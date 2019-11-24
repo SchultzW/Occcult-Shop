@@ -1,0 +1,11 @@
+﻿@model MyHoroscope
+@{ 
+    ViewData["Title"] = "HoroscopeResult";
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+
+<h1 class="freakshowText">Feast Your Eyes Upon and Contemplate!</h1>
+
+<h1>Sign: @Model.Sunsign </h1>
+<h2>Date: @Model.Date</h2>
+<h3>Your Horoscope: @Model.Horoscope</h3>

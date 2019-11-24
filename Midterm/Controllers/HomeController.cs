@@ -7,21 +7,30 @@ using Microsoft.AspNetCore.Mvc;
 using Midterm.Infrastructure;
 using Midterm.Models;
 using System.Web;
+using Midterm.Repos;
 
 namespace Midterm.Controllers
 {
     public class HomeController : Controller
     {
+        IProdRepos pRepo;
+
+        public HomeController(IProdRepos r)
+        {
+            pRepo = r;
+        }
+
         public IActionResult Index()
         {
+            
             List<int> Ids = new List<int>();
             Ids = RandomProds();
             List<Product> myList = new List<Product>();
+
           
-            
             foreach(int id in Ids)
             {
-                Product p = ProdRepo.GetProdByID(id);
+                Product p = pRepo.GetProdByID(id);
                 myList.Add(p);
             }
 
@@ -41,13 +50,13 @@ namespace Midterm.Controllers
         private List<int> RandomProds()
         {
             
-            if(ProdRepo.Count()==0)
+            if(pRepo.Count()==0)
             {
                 
                 FillRepo();
                 
             }
-            int num = ProdRepo.Count();
+            int num = pRepo.Count();
             Random random = new Random();
             List<int> Ids = new List<int>();
             var myNums= Enumerable.Range(1, num).ToArray();
@@ -98,9 +107,9 @@ namespace Midterm.Controllers
             p.Description = "Test Prod 3";
             p.imgPath = "http://placekitten.com/g/203/300";
 
-            ProdRepo.AddProd(p);
-            ProdRepo.AddProd(p1);
-            ProdRepo.AddProd(p2);
+            pRepo.AddProd(p);
+            pRepo.AddProd(p1);
+            pRepo.AddProd(p2);
 
         }
     }

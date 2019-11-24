@@ -22,7 +22,7 @@
                 <option value="4">4</option>
             </select>
     <input type="hidden" name="ID" value="@Model.ID" />
-    <button class="btn" type="submit">Add to Cart</button>
+    <button class="btn" type="submit" name="command" value="AddCart">Add to Cart</button>
 </form>
 <div>
     <p>@Model.Description</p>
@@ -36,3 +36,23 @@
         @r.ReviewText
     </div>
 }
+
+
+    <div>
+        <h4 class="freakshowText">Write a Review</h4>
+        <form class="ReviewForm" method="post">
+            <div class="commentForm">
+                <label for="Name">Name:</label>
+                <input form="Name" name="Name"/>
+            </div>
+            <div class="ReviewForm">
+                <label for="reviewText">Review</label>
+                <textarea name="reviewText" rows="6" cols="40"></textarea>
+            </div>
+            <hidden input for="ID" value=@Model.ID></hidden>
+            <button class="btn" type="submit" name="command" value="AddReview">Submit</button>
+            
+
+        </form>
+
+    </div>

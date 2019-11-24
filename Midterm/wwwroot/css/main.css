@@ -194,12 +194,6 @@ btn:active {
     margin: auto;
 }
 
-.story-form {
-    width: 20rem;
-    max-width: 90%;
-    margin: auto;
-}
-
 .story-item {
     width: 20rem;
     max-width: 95%;
@@ -309,7 +303,9 @@ btn:active {
 
 .text {
     word-wrap: break-word;
-    width: 800px;
+    /*width: 800px;*/
+    text-align:center;
+    display:block:
 }
 
 .text-storiespage {
@@ -347,6 +343,20 @@ btn:active {
     display: flex;
     align-items: center;
     margin:10px auto;
+}
+.hTitle{
+    color:Black;
+    font-family:freakshow;
+    text-align:center;
+    margin:5px 5px 5px 5px;
+    /*width:150%;
+    height:150%;*/
+    font-size:45px;
+    
+}
+.freakshowText{
+    color:black;
+    font-family:freakshow;
 }
 .titlesize{
     font-size:35px;
@@ -392,6 +402,15 @@ btn:active {
     text-align:center;
     margin:10px;
 }
+
+.ReviewForm {
+    width: 20rem;
+    max-width: 90%;
+    /*margin: auto;*/
+    text-align:left;
+    padding:5px 5px 5px 5px;
+}
+
 
 /*Search Bar*/
 .searchBar {

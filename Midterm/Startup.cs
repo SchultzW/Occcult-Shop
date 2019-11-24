@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
+using Midterm.Repos;
+using Midterm.Models;
 
 namespace Midterm
 {
@@ -37,6 +39,7 @@ namespace Midterm
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
+            services.AddTransient<IProdRepos, ProdRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

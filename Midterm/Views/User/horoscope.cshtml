@@ -4,12 +4,48 @@
     Layout = "~/Views/Shared/_Header.cshtml";
 }
 
-<h1>horoscope</h1>
+<div class="hTitle">What does the future hold!?</div>
+<div class="text">
+    Unlucky in love? In need of some winning numbers? Grandma has passed away but you need to know where she hid her stash of silver dollars?
+    Fear not gentle patron. Madame Angelique’s Occult and Esoteric Emporium offers an assortment
+    of fine services such as: past life readings, present life readings, future life readings, remote viewings, seances, divination, scrying,
+    dowsing, and finding lost keys.
 
 
+</div>
+<div class="text">
 
-<form typeof="post" asp-route-sign="virgo">
-    
-    <button class="btn" type="submit">GO</button>
-   
-</form>
+    <p>
+        See for yourself our soothsaying prowess. Try our free horoscope service, prepared daily by the esteemed Sergi Acora Tokár.
+    </p>
+
+</div>
+
+<div class="text">
+    <form method="post">
+        Sign <select name="sign">
+            <option value="aquarius">Aquarius</option>
+            <option value="pisces">Pisces</option>
+            <option value="aries">Aries</option>
+            <option value="taurus">Taurus</option>
+            <option value="gemini">Gemini</option>
+            <option value="leo">Leo</option>
+            <option value="virgo">Virgo</option>
+            <option value="libra">Libra</option>
+            <option value="scorpio">Scorpio</option>
+            <option value="sagittarius">Sagittarius</option>
+        </select>
+
+        For <select name="time">
+            <option value="today">Today</option>
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+            <option value="year">This Year</option>
+        </select>
+
+        <button class="btn" type="submit"> Go! </button>
+
+    </form>
+
+
+</div>
