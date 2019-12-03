@@ -9,6 +9,6 @@ namespace Midterm.Models
     {
         public string Author { get; set; }
         public string ReviewText { get; set; }
-        public int ProdId { get; set; }
+        public int ReviewId { get; set; }
     }
 }

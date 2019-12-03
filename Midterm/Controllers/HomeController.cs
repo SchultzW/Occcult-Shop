@@ -14,49 +14,59 @@ namespace Midterm.Controllers
     public class HomeController : Controller
     {
         IProdRepos pRepo;
+        
 
         public HomeController(IProdRepos r)
         {
             pRepo = r;
         }
+        public IActionResult AboutUs()
+        {
+            return View("AboutUs");
+        }
 
         public IActionResult Index()
         {
-            
+            List<Product> newProdList = new List<Product>();
             List<int> Ids = new List<int>();
             Ids = RandomProds();
-            List<Product> myList = new List<Product>();
 
-          
+            AppDbContext db = new AppDbContext();
+            List<Product> qProds = (from prod in db.Products
+                                    where prod.IsNew == true
+                                    select prod).ToList();
+
+
+
             foreach(int id in Ids)
             {
-                Product p = pRepo.GetProdByID(id);
-                myList.Add(p);
+                newProdList.Add(qProds[]);
             }
 
+            
+            
+          
+           
 
-            return View(myList);
+
+            return View(newProdList);
         }
-        private CartRepo GetCart()
+        private Cart GetCart()
         {
-            CartRepo cart = HttpContext.Session.GetJson<CartRepo>("Cart") ?? new CartRepo();
+            Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             return cart;
         }
 
-        private void SaveCart(CartRepo cart)
+        private void SaveCart(Cart cart)
         {
             HttpContext.Session.SetJson("Cart", cart);
         }
         private List<int> RandomProds()
         {
-            
-            if(pRepo.Count()==0)
-            {
-                
-                FillRepo();
-                
-            }
-            int num = pRepo.Count();
+
+            //need to update if more prods added
+            int num = 8;
+
             Random random = new Random();
             List<int> Ids = new List<int>();
             var myNums= Enumerable.Range(1, num).ToArray();
@@ -87,21 +97,21 @@ namespace Midterm.Controllers
             Product p2 = new Product();
 
             p1.Title = "Prod 1";
-            p1.ID = 1;
+            p1.ProductId = 1;
             p1.Price = 1;
             p1.Tag = "Book";
             p1.Description = "Test Prod 1";
             p1.imgPath = "http://placekitten.com/g/201/300";
 
             p2.Title = "Prod 2";
-            p2.ID = 2;
+            p2.ProductId = 2;
             p2.Price = 2;
             p2.Tag = "Book";
             p2.Description = "Test Prod 2";
             p2.imgPath = "http://placekitten.com/g/202/300";
 
             p.Title = "Prod 3";
-            p.ID = 3;
+            p.ProductId = 3;
             p.Price = 3;
             p.Tag = "Book";
             p.Description = "Test Prod 3";

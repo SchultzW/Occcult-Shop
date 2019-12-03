@@ -1,2 +1,10 @@
 currently working on cart page. I think i need to add the session info to save the cart
 on the prod page and then load it on the cart page or else page is blank
+
+//*****************************************************************************************************//
+11-23
+todo update cofirm page to use tiles
+need to keep working on repos and finish implementing comments
+
+
+///for presentation maybe show IActionResult ProductDetails and api call

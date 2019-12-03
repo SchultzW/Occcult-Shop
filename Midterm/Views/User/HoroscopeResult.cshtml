@@ -4,8 +4,17 @@
     Layout = "~/Views/Shared/_Header.cshtml";
 }
 
-<h1 class="freakshowText">Feast Your Eyes Upon and Contemplate!</h1>
+<h1 class="hTitle">Feast Your Eyes and Contemplate!</h1>
 
-<h1>Sign: @Model.Sunsign </h1>
+<div>
+    
+    
+    <h3>Your Horoscope: </h3>
+    <div class="horoscopeText">
+        @Model.Horoscope
+    </div>
+
+</div>
+@*<h1>Sign: @Model.Sunsign </h1>
 <h2>Date: @Model.Date</h2>
-<h3>Your Horoscope: @Model.Horoscope</h3>
+<h3>Your Horoscope: @Model.Horoscope</h3>*@

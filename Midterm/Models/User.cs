@@ -7,9 +7,9 @@ namespace Midterm.Models
 {
     public class User
     {
-        private static List<CartRepo> cart = new List<CartRepo>();
-        public static List<CartRepo> Cart { get { return cart; } }
-
+        private static List<Cart> cart = new List<Cart>();
+        public static List<Cart> Cart { get { return cart; } }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

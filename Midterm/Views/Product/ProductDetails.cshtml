@@ -21,7 +21,7 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-    <input type="hidden" name="ID" value="@Model.ID" />
+    <input type="hidden" name="ID" value="@Model.ProductId" />
     <button class="btn" type="submit" name="command" value="AddCart">Add to Cart</button>
 </form>
 <div>
@@ -43,13 +43,13 @@
         <form class="ReviewForm" method="post">
             <div class="commentForm">
                 <label for="Name">Name:</label>
-                <input form="Name" name="Name"/>
+                <input for="Name" name="Name"/>
             </div>
             <div class="ReviewForm">
                 <label for="reviewText">Review</label>
                 <textarea name="reviewText" rows="6" cols="40"></textarea>
             </div>
-            <hidden input for="ID" value=@Model.ID></hidden>
+            <hidden input for="ID" value=@Model.ProductId></hidden>
             <button class="btn" type="submit" name="command" value="AddReview">Submit</button>
             
 

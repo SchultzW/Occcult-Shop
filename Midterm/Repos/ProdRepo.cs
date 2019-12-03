@@ -20,7 +20,7 @@ namespace Midterm.Models
         }
         public Product GetProdByID(int id)
         {
-            Product prod = prods.Find(p => p.ID == id);
+            Product prod = prods.Find(p => p.ProductId == id);
             return prod;
         }
         public  Product GetProdByTag(string tag)

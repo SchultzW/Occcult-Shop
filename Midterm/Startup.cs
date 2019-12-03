@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
 using Midterm.Repos;
 using Midterm.Models;
+using Midterm.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using OccultShop.Infrastructure;
 
 namespace Midterm
 {
@@ -40,11 +43,14 @@ namespace Midterm
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
             services.AddTransient<IProdRepos, ProdRepo>();
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
+                Configuration["ConnectionStrings:ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AppDbContext context)
         {
+           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,12 +66,14 @@ namespace Midterm
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            context.Database.Migrate();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            SeedData.Seed(context);
         }
     }
 }

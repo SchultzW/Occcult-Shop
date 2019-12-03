@@ -130,22 +130,27 @@ a {
 .card__header,
 .card__content {
     padding: 1rem;
+    
+}
+.brown {
+    background-color: #B96119;
 }
 
-    .card__header h1,
-    .card__content h1,
-    .card__content h2,
-    .card__content p {
-        margin: 0;
-    }
+.card__header h1,
+.card__content h1,
+.card__content h2,
+.card__content p {
+    margin: 0;
+        
+}
 
 .card__image {
     width: 100%;
 }
 
-    .card__image img {
-        width: 100%;
-    }
+.card__image img {
+    width: 100%;
+}
 
 .card__actions {
     padding: 1rem;
@@ -258,20 +263,20 @@ btn:active {
     z-index: 1;
 }
 
-    /* Links inside the dropdown */
-    .dropdown-content a {
-        float: none;
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
-    }
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
 
-        /* Add a grey background color to dropdown links on hover */
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -421,4 +426,48 @@ btn:active {
 }
 .prod-layout{
     display:inline-block;
+}
+/**********************************Horoscope************************************/
+.horoscopeText {
+    word-wrap: break-word;
+    /*width: 1000px;*/
+    padding-left:10px;
+    padding-right:10px;
+}
+/**********************************Footer*************************************/
+
+.footer {
+    padding: 10px 20px;
+    background-color: saddlebrown;
+    color: white;
+    text-align: center;
+    font-family: freakshow;
+   
+    
+}
+
+/***********************************AboutUs***************************************/
+.AboutText {
+    font-family: Centaur;
+    padding: 50px 50px 50px 50px;
+}
+.AboutImg{
+    height:300px;
+    width:250px;
+}
+.span4 img {
+    margin-right: 10px;
+}
+
+.span4 .img-left {
+    float: left;
+}
+
+.span4 .img-right {
+    float: right;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

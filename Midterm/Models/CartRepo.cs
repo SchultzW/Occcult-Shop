@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Midterm.Models
 {
-    public class CartRepo
+    public class Cart
     {
         private static List<CartItem> carts = new List<CartItem>();
         public static List<CartItem> Carts { get { return carts; } }
-
+        public int CartId { get; set; }
         public void AddToCart(CartItem cartItem)
         {
             carts.Add(cartItem);
