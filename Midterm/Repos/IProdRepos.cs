@@ -8,8 +8,8 @@ namespace Midterm.Repos
 {
    public interface IProdRepos
     {
-         
-        List<Product> Prods { get; }
+        IQueryable<Product> Products { get; }
+        //List<Product> Prods { get; }
 
 
 

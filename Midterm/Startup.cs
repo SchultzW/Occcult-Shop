@@ -15,6 +15,7 @@ using Midterm.Models;
 using Midterm.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using OccultShop.Infrastructure;
+using OccultShop.Repos;
 
 namespace Midterm
 {
@@ -43,6 +44,7 @@ namespace Midterm
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
             services.AddTransient<IProdRepos, ProdRepo>();
+            services.AddTransient<ICartItemRepo, CartItemRepo>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
                 Configuration["ConnectionStrings:ConnectionString"]));
         }

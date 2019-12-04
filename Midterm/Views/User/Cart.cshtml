@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Header.cshtml";
+    
 }
 <form>
     <button class="btn">Checkout</button>
@@ -14,7 +15,7 @@
     {
         <div class="">
             <div class="prod-layout">
-                <img src="@i.CartProd.imgPath" class="" />
+                <img src="@i.imagepath" class="" />
             </div>
             <div class="prod-layout">
                 <p>@i.CartProd.Title</p>

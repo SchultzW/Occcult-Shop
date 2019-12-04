@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Midterm.Models;
 using Midterm.Infrastructure;
-using static Midterm.Models.Cart;
 using Midterm.Repos;
+using OccultShop.Repos;
+using OccultShop.Models;
 
 namespace Midterm.Controllers
 {
@@ -14,14 +13,17 @@ namespace Midterm.Controllers
     {
         
         IProdRepos pRepo;
-        Product p = new Product();
-        Product p1 = new Product();
-        Product p2 = new Product();
-        Product p3 = new Product();
-        Product p4 = new Product();
+        ICartItemRepo cRepo;
+       
+        //Product p = new Product();
+        //Product p1 = new Product();
+        //Product p2 = new Product();
+        //Product p3 = new Product();
+        //Product p4 = new Product();
 
-        public ProductController(IProdRepos r)
+        public ProductController(IProdRepos r,ICartItemRepo c)
         {
+            cRepo = c;
             pRepo = r;
         }
 
@@ -42,19 +44,24 @@ namespace Midterm.Controllers
         [HttpGet]
         public ViewResult Products(string tag)
         {
-            
-            pRepo.Prods.Clear();
-            FillRepo(tag);
-          
-                            
-            List<Product> prods = pRepo.Prods;
-            return View(prods);
+
+            //pRepo.Prods.
+            //FillRepo(tag);
+
+            IEnumerable<Product> products = (from product in pRepo.Products
+                                             where product.Tag == tag
+                                             select product).ToList();
+
+            //List < Product > prods = pRepo.Products.ToList();
+            return View(products);
         }
         [HttpGet]
         public ViewResult ProductDetails(int ID)
         {
-            Product p = pRepo.GetProdByID(ID);
-            
+            IEnumerable<Product> products = (from product in pRepo.Products
+                                             where product.ProductId == ID
+                                             select product).ToList();
+            Product p = products.ElementAt(0);
             return View(p);
         }
         /// <summary>
@@ -104,16 +111,14 @@ namespace Midterm.Controllers
                 CartItem item = new CartItem();
                 Product p = new Product();
                 p = pRepo.GetProdByID(id);
-                item.CartProd = p;
+
+               
+                item.Product = p;
                 item.Quantity = quantity;
 
-
-                //List<Cart> cart = Cart.Carts;
-                List<CartItem> cart = Cart.Carts;
-
-
-                cart.Add(item);
-                SaveCart(cart);
+                cRepo.AddItem(item);
+               
+                
                 return View("PurchaseConfirm", p);
             }
             else

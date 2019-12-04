@@ -7,14 +7,21 @@ using Midterm.Infrastructure;
 using Midterm.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OccultShop.Models;
+using OccultShop.Repos;
 using RestSharp;
 
 namespace Midterm.Controllers
 {
     public class UserController : Controller
     {
-        List<CartItem> cart = new List<CartItem>();
-
+        ICartItemRepo cRepo;
+        //List<CartItem> cart = new List<CartItem>();
+        
+        public UserController(ICartItemRepo r)
+        {
+            cRepo = r;
+        }
         public ViewResult Profile()
         {
             return View();
@@ -26,25 +33,26 @@ namespace Midterm.Controllers
         [HttpGet]
         public ViewResult Cart()
         {
-            List<CartItem> cart = GetCart();
+            IEnumerable<CartItem>cartItems = (from CartItem in cRepo.CartItems
+                                              select CartItem).ToList();
 
-            return View(cart);
+            return View(cartItems);
         }
         [HttpPost]
         public IActionResult Cart(string s)
         {
             return View("checkout");
         }
-        private List<CartItem> GetCart()
-        {
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-            return cart;
-        }
+        //private List<CartItem> GetCart()
+        //{
+        //    List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+        //    return cart;
+        //}
 
-        private void SaveCart(List<CartItem> cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
-        }
+        //private void SaveCart(List<CartItem> cart)
+        //{
+        //    HttpContext.Session.SetJson("Cart", cart);
+        //}
         [HttpGet]
         public ViewResult Horoscope()
         {
