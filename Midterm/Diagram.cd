@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_Header.cshtml";
+}
+
+<div class="center" style="font-family:freakshow">
+    Welcome 
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 AboutText">
+            These days it is especially difficult to dabble in the occult. One may visit a local mystic only to find crystals and candles. 
+            Another is forced to meet an individual of ill repute to purchase a particular tome of forbidden knowledge, only to be stabbed in the 
+            back by the scoundrel! In these trying times fear not! Madame Angelique’s Occult and Esoteric Emporium is an online e-commerce site 
+            for the seekers of the arcane unknown.  Whether you are a member of the of a Hermetic Order communing with an Old One or a grave 
+            digger with an extracurricular activity that is best performed by moonlight, Madame Angelique’s Occult and Esoteric Emporium has you
+            covered. We also carry a fine assortment of lamps and other décor to make your séance room feel cozy. 
+        </div>
+
+    </div>
+
+
+</div>
+<div class="container clearfix">
+    <div class="block">
+        <div class="row">
+            <div class="span4">
+                <img class="img-left AboutImg" src="~/img/madame.jpg" />
+                <div class="freakshowText"><h3>Madame Angelique</h3></div>
+                <p>Madame Angelique the owner and manager of the Occult and Esoteric Emporium.</p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

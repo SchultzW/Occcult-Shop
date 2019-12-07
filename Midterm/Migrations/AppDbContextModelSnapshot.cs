@@ -25,6 +25,8 @@ namespace OccultShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Quantity");
+
                     b.HasKey("CartId");
 
                     b.ToTable("Carts");
@@ -35,6 +37,8 @@ namespace OccultShop.Migrations
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CartItemID");
 
                     b.Property<string>("Description");
 
@@ -50,12 +54,14 @@ namespace OccultShop.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CartItemID");
+
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Midterm.Models.Review", b =>
                 {
-                    b.Property<int>("ReviewId")
+                    b.Property<int>("ReviewID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -65,7 +71,7 @@ namespace OccultShop.Migrations
 
                     b.Property<string>("ReviewText");
 
-                    b.HasKey("ReviewId");
+                    b.HasKey("ReviewID");
 
                     b.HasIndex("ProductId");
 
@@ -93,11 +99,42 @@ namespace OccultShop.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("OccultShop.Models.CartItem", b =>
+                {
+                    b.Property<int>("CartItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CartProdProductId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("CartItemID");
+
+                    b.HasIndex("CartProdProductId");
+
+                    b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("Midterm.Models.Product", b =>
+                {
+                    b.HasOne("OccultShop.Models.CartItem")
+                        .WithMany("Products")
+                        .HasForeignKey("CartItemID");
+                });
+
             modelBuilder.Entity("Midterm.Models.Review", b =>
                 {
                     b.HasOne("Midterm.Models.Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("OccultShop.Models.CartItem", b =>
+                {
+                    b.HasOne("Midterm.Models.Product", "CartProd")
+                        .WithMany()
+                        .HasForeignKey("CartProdProductId");
                 });
 #pragma warning restore 612, 618
         }

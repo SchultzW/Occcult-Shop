@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Midterm.Repos
 {
-   public interface IProdRepos
+    public interface IProdRepos
     {
-         
-        List<Product> Prods { get; }
+        IQueryable<Product> Products { get; }
+        //List<Product> Prods { get; }
 
 
 
@@ -21,9 +21,10 @@ namespace Midterm.Repos
 
         int Count();
 
+        void AddReview(Product p, Review r);
 
 
         void Clear();
-        
+
     }
 }

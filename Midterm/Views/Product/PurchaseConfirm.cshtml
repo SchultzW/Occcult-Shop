@@ -1,10 +1,10 @@
-﻿
+﻿@model Product
 @{
     ViewData["Title"] = "PurchaseConfirm";
     Layout = "~/Views/Shared/_Header.cshtml";
 }
 
-<h1 class="text">Thank you patron!</h1>
+<h1 class="text">Thank you for buying @Model.Title</h1>
 
 <div class="grid">
     <article class="card product-item">
@@ -15,20 +15,20 @@
                 </h1>
             </header>
             <div class="card__image center">
-                <img src="http://placekitten.com/200/300" class="" />
+                <img src="~/img/shop.png" class="" />
             </div>
         </a>
     </article>
  
         <article class="card product-item">
-            <a asp-controller="User" asp-action="Checkout">
+            <a asp-controller="User" asp-action="Cart">
                 <header class="card__header">
                     <h1 class="product__title center freakshowText">
                         Checkout
                     </h1>
                 </header>
                 <div class="card__image center">
-                    <img src="http://placekitten.com/200/300" class="" />
+                    <img src="~/img/pay.jpg" class="" />
                 </div>
             </a>
         </article>

@@ -7,23 +7,38 @@ using Midterm.Models;
 using Midterm.Infrastructure;
 using static Midterm.Models.Cart;
 using Midterm.Repos;
+using OccultShop.Repos;
+using OccultShop.Models;
 
 namespace Midterm.Controllers
 {
     public class ProductController : Controller
     {
-        
+        //ICartItemRepo CIRepo;
         IProdRepos pRepo;
+        ICartRepo cRepo;
         Product p = new Product();
         Product p1 = new Product();
         Product p2 = new Product();
         Product p3 = new Product();
         Product p4 = new Product();
 
-        public ProductController(IProdRepos r)
+        //icartrepo 
+        //public ProductController(IProdRepos r,ICartItemRepo CI )
+        //{
+        //    pRepo = r;
+        //    CIRepo = CI;
+        //}
+        public ProductController(IProdRepos p,ICartRepo c)
         {
-            pRepo = r;
+            pRepo = p;
+            cRepo = c;
+
         }
+        //public ProductController(IProdRepos p)
+        //{
+        //    pRepo = p;
+        //}
 
         List<Product> allProds = new List<Product>();
         List<Product> products = new List<Product>();
@@ -38,82 +53,63 @@ namespace Midterm.Controllers
         {
             return View();
         }
-      
+        [HttpPost]
+        public IActionResult Browse(string searchText,string command)
+        {
+            var results = (from p in pRepo.Products
+                           where p.Title.Contains(searchText)
+                           select p).ToList();
+            return View("products", results);
+        }
         [HttpGet]
         public ViewResult Products(string tag)
         {
-            
-            pRepo.Prods.Clear();
-            FillRepo(tag);
-          
-                            
-            List<Product> prods = pRepo.Prods;
-            return View(prods);
+
+
+            //pRepo.Prods.
+            //FillRepo(tag);
+
+            IEnumerable<Product> products = (from product in pRepo.Products
+                                             where product.Tag == tag
+                                             select product).ToList();
+
+            //List < Product > prods = pRepo.Products.ToList();
+            return View(products);
         }
         [HttpGet]
         public ViewResult ProductDetails(int ID)
         {
             Product p = pRepo.GetProdByID(ID);
             
+            
             return View(p);
         }
-        /// <summary>
-        /// for adding to cart
-        /// </summary>
-        /// <param name="quantity"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        //[HttpPost]
-        //public IActionResult ProductDetails(int quantity, int id)
-        //{
-        //    CartItem item = new CartItem();
-        //    Product p = new Product();
-        //    p = pRepo.GetProdByID(id);
-        //    item.CartProd = p;
-        //    item.Quantity = quantity;
-
-            
-        //    //List<Cart> cart = Cart.Carts;
-        //    List<CartItem> cart = Cart.Carts;
-            
-            
-        //    cart.Add(item);
-        //    SaveCart(cart);
-        //    return View("PurchaseConfirm",p);
-
-            
-        //}
+    
         [HttpPost]
-        public IActionResult ProductDetails(string Name,string reviewText, int ID,string Command,int quantity, int id)
+        public IActionResult ProductDetails(string Name,string reviewText,string Command,int quantity, int id)
         {
             if (Command == "AddReview")
             {
                 Review review = new Review();
                 review.Author = Name;
                 review.ReviewText = reviewText;
-                //review.ProdId = ID;
+                //review.ProductID = id;
+                Product p = pRepo.GetProdByID(id);
 
-                Product p = pRepo.GetProdByID(ID);
-                p.Reviews.Add(review);
+                pRepo.AddReview(p, review);
+                
                 
                 return View("Browse");
             }
             else if (Command == "AddCart")
             {
-
+                Product p;
                 CartItem item = new CartItem();
-                Product p = new Product();
                 p = pRepo.GetProdByID(id);
                 item.CartProd = p;
                 item.Quantity = quantity;
-
-
-                //List<Cart> cart = Cart.Carts;
-                List<CartItem> cart = Cart.Carts;
-
-
+                cRepo.AddToCart(item);
                 cart.Add(item);
-                SaveCart(cart);
                 return View("PurchaseConfirm", p);
             }
             else

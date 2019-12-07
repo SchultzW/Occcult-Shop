@@ -2,31 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Midterm.Infrastructure;
 using Midterm.Models;
+using Midterm.Repos;
 
 namespace Midterm.Models
 {
-    public class ReviewRepo
+    public class ReviewRepo : IReviewRepo
     {
-        private static List<Review> reviews = new List<Review>();
-        public static List<Review> Reviews { get { return reviews; } }
+        private AppDbContext context;
+
+        public IQueryable<Review> Reviews
+        {
+            get
+            {
+                return context.Reviews;
+            }
+            
+        }
+        public ReviewRepo(AppDbContext appDbContext)
+        {
+            context = appDbContext;
+        }
 
         public void AddReview(Review r)
         {
-            reviews.Add(r);
+            context.Reviews.Add(r);
+            context.SaveChanges();
         }
 
-        //public List<Review> Ge(int id)
-        //{
-        //    List<Review> reviews = new List<Review>();
-        //    foreach(Review r in ReviewRepo.reviews)
-        //    {
-        //        if(id==r.ProdId)
-        //        {
-        //            reviews.Add(r);
-        //        }
-        //    }
-        //    return reviews;
-        //}
+        public void RemoveReview(Review r)
+        {
+            context.Remove(r);
+            context.SaveChanges();
+        }
     }
 }

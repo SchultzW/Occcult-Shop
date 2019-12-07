@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Header.cshtml";
 }
 
-<h1>ProductView</h1>
+
 
 @if (Model != null)
 {
@@ -18,11 +18,11 @@
                         <img src="@p.imgPath" class="" />
                     </div>
                     <div class="card__content">
-                        <p class="product__description">
-                            Title:@p.Title
+                        <p class="product__description freakshowText">
+                            @p.Title
                         </p>
                         <p class="product__description">
-                            Price:@p.Price
+                            $@p.Price
                         </p>
 
 

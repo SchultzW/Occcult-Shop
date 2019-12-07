@@ -15,6 +15,7 @@ using Midterm.Models;
 using Midterm.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using OccultShop.Infrastructure;
+using OccultShop.Repos;
 
 namespace Midterm
 {
@@ -23,6 +24,7 @@ namespace Midterm
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -43,8 +45,11 @@ namespace Midterm
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
             services.AddTransient<IProdRepos, ProdRepo>();
+            services.AddTransient<IReviewRepo, ReviewRepo>();
+            services.AddTransient<ICartItemRepo, CartItemRepo>();
+            services.AddTransient<ICartRepo, CartRepo>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
-                Configuration["ConnectionStrings:ConnectionString"]));
+                Configuration["ConnectionStrings:LocalDbConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

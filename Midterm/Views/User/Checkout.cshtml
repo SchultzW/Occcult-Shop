@@ -1,25 +1,49 @@
-﻿
+﻿@model List<CartItem>
 @{
     ViewData["Title"] = "Checkout";
     Layout = "~/Views/Shared/_Header.cshtml";
 }
 
-<h1>CheckoutView</h1>
+
 <h1>Ready to Checkout?</h1>
 
-<div>
-    <div>
-        <p>Title</p>
-        <p>Price</p>
+<div>  
+        <div class="">
+            @foreach (CartItem i in Model)
+            {
+                <div class="">
+                    <div class="prod-layout">
+                        <img src="@i.CartProd.imgPath" class="" />
+                    </div>
+                    <div class="prod-layout">
+                        <p>@i.CartProd.Title</p>
+                        <p>$@i.CartProd.Price</p>
+                        <p>Quantity: @i.Quantity</p>
+                    </div>
+                </div>
 
-    </div>
-  
-    <div>
-        Total:
-    </div>
-    <div>
-        <button class="btn">Confirm!</button>
-    </div>
-   
+            }
+        </div>
+        <div>
+            @{
+                int total = 0;
+                foreach (CartItem i in Model)
+                {
+                    total += (i.Quantity * i.CartProd.Price);
+                }
+            }
+            Total:$@total
+        </div>
+        <div>
+            <form method="post">
+                <button class="btn" type="submit" name="command" value="confirm" a asp-action="checkoutconfirm">Confirm!</button>
+            </form>
 
+        </div>
+        <div>
+            <form method="post">
+                <button class="btn" type="submit" name="command" value="drop">Cart Drop</button>
+            </form>
+
+        </div>
 </div>

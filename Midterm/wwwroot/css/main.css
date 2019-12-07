@@ -28,10 +28,11 @@
 
 body {
     padding: 0;
-    margin: 0;
+    margin-bottom: 100px;
     font-family: Centaur;
     background-color: #eeece1;
     font-size:larger;
+
 }
 
 .main-header {
@@ -120,6 +121,7 @@ button:active {
 .card {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin-top: 50px;
+    margin-bottom:auto;
 }
 
 a {
@@ -145,11 +147,13 @@ a {
 }
 
 .card__image {
-    width: 100%;
+    width: inherit;
+    height:inherit;
 }
 
 .card__image img {
-    width: 100%;
+    width: inherit;
+    height:inherit;
 }
 
 .card__actions {
@@ -437,13 +441,16 @@ btn:active {
 /**********************************Footer*************************************/
 
 .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width:100%;
     padding: 10px 20px;
+    margin-top:20px;
     background-color: saddlebrown;
     color: white;
     text-align: center;
     font-family: freakshow;
-   
-    
 }
 
 /***********************************AboutUs***************************************/
@@ -452,8 +459,8 @@ btn:active {
     padding: 50px 50px 50px 50px;
 }
 .AboutImg{
-    height:300px;
-    width:250px;
+    height:inherit;
+    width:inherit;
 }
 .span4 img {
     margin-right: 10px;

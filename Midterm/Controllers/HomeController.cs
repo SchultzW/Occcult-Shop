@@ -31,16 +31,18 @@ namespace Midterm.Controllers
             List<int> Ids = new List<int>();
             Ids = RandomProds();
 
-            AppDbContext db = new AppDbContext();
-            List<Product> qProds = (from prod in db.Products
+
+
+            List<Product> qProds = (from prod in pRepo.Products
                                     where prod.IsNew == true
                                     select prod).ToList();
 
 
 
-            foreach(int id in Ids)
+
+            foreach (int id in Ids)
             {
-                newProdList.Add(qProds[]);
+                newProdList.Add(qProds[id]);
             }
 
             
@@ -65,7 +67,7 @@ namespace Midterm.Controllers
         {
 
             //need to update if more prods added
-            int num = 8;
+            int num = 4;
 
             Random random = new Random();
             List<int> Ids = new List<int>();

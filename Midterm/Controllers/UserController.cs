@@ -5,15 +5,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Midterm.Infrastructure;
 using Midterm.Models;
+using Midterm.Repos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OccultShop.Models;
+using OccultShop.Repos;
 using RestSharp;
 
 namespace Midterm.Controllers
 {
     public class UserController : Controller
     {
-        List<CartItem> cart = new List<CartItem>();
+        ICartRepo cRepo;
+        ICartItemRepo CIRepo;
+        IProdRepos pRepo;
+
+        public UserController(ICartRepo c, ICartItemRepo CI,IProdRepos p)
+        {
+            CIRepo = CI;
+            cRepo = c;
+            pRepo = p;
+        }
+        //public UserController(ICartRepo c)
+        //{
+           
+        //    cRepo = c;
+        //}
 
         public ViewResult Profile()
         {
@@ -23,28 +40,68 @@ namespace Midterm.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Checkout(string command)
+        {
+            if(command=="drop")
+            {
+                cRepo.ClearCart();
+                return View("index");
+            }
+            else
+            {
+                var cartItems = (from item in CIRepo.CartItems
+                                 select item).ToList();
+                return View("checkoutconfirm",cartItems);
+            }
+        }
         [HttpGet]
         public ViewResult Cart()
         {
-            List<CartItem> cart = GetCart();
+            //    //var products = (from item in CIRepo.CartItems
+            //    //                             select item.CartProd).ToList();
 
-            return View(cart);
+            //    //// var quantity = (from item in CIRepo.CartItems
+            //    //                 select item.Quantity).ToList();
+
+            var cartItems = (from item in CIRepo.CartItems
+                             select item).ToList();
+
+
+            return View(cartItems);
+
+            
         }
+     
+           
+            
         [HttpPost]
-        public IActionResult Cart(string s)
+        public IActionResult Cart(int ID,string command)
         {
-            return View("checkout");
-        }
-        private List<CartItem> GetCart()
-        {
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-            return cart;
-        }
+            if(command=="checkout")
+            {
+                var cartItems = (from item in CIRepo.CartItems
+                                 select item).ToList();
+                return View("Checkoutconfirm");
 
-        private void SaveCart(List<CartItem> cart)
-        {
-            HttpContext.Session.SetJson("Cart", cart);
+            }
+            else
+            {
+                var deleteItem =
+               (from item in CIRepo.CartItems
+                where item.CartItemID == ID
+                select item).ToList();
+
+                Product p = deleteItem[0].CartProd;
+                CIRepo.Remove(deleteItem[0]);
+                return View("DeleteConfirm", p);
+            }
+           
+            
+            
+            
         }
+     
         [HttpGet]
         public ViewResult Horoscope()
         {
@@ -81,6 +138,16 @@ namespace Midterm.Controllers
              */
 
             return View("HoroscopeResult",horoscope);
+        }
+        private List<CartItem> GetCart()
+        {
+            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+            return cart;
+        }
+
+        private void SaveCart(List<CartItem> cart)
+        {
+            HttpContext.Session.SetJson("Cart", cart);
         }
 
     }

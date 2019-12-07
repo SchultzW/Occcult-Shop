@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Midterm.Models;
+using OccultShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Midterm.Infrastructure
         public DbSet<Cart> Carts { get; set; }
         public DbSet<User> Users { get; set;}
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
     }
 }

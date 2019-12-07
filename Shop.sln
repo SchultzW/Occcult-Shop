@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OccultShop", "Midterm\OccultShop.csproj", "{B66CE0F0-5927-4A2F-8DF9-259685D896AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopTest", "ShopTest\ShopTest.csproj", "{CD4DEE0A-BCB6-4320-BCBF-8F24BFE0328B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B66CE0F0-5927-4A2F-8DF9-259685D896AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66CE0F0-5927-4A2F-8DF9-259685D896AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B66CE0F0-5927-4A2F-8DF9-259685D896AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD4DEE0A-BCB6-4320-BCBF-8F24BFE0328B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD4DEE0A-BCB6-4320-BCBF-8F24BFE0328B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD4DEE0A-BCB6-4320-BCBF-8F24BFE0328B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD4DEE0A-BCB6-4320-BCBF-8F24BFE0328B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
